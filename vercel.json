@@ -1,4 +1,5 @@
 {
+    "nodeVersion": "20.x",
     "outputDirectory": "dist/public",
     "rewrites": [
         {
