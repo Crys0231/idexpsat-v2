@@ -1,4 +1,3 @@
-import { systemRouter } from "./_core/systemRouter";
 import { router } from "./_core/trpc";
 import { csvRouter } from "./routers/csv";
 import { surveysRouter } from "./routers/surveys";
@@ -6,8 +5,6 @@ import { configRouter } from "./routers/config";
 import { authRouter } from "./routers/auth"; // import the new authRouter
 
 export const appRouter = router({
-    // System and admin routes
-    system: systemRouter,
 
     // Auth logic including Request Access / Approvals
     auth: authRouter,

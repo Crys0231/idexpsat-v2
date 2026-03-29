@@ -1,19 +1,15 @@
 import { z } from "zod";
-import { tenantProcedure, router } from "../../../server/_core/trpc";
+import { tenantProcedure, router } from "../_core/trpc";
 import * as db from "../db";
 import { TRPCError } from "@trpc/server";
-import { sendSurveyWhatsAppNotification } from "../../../server/_core/whatsapp";
+import { sendSurveyWhatsAppNotification } from "../_core/whatsapp";
 
-// FIX: z.enum no Zod v4 não aceita objeto de opções como segundo argumento
-// (a API mudou da v3 para a v4). Removido o segundo argumento { required_error }.
-// Se precisar de mensagem customizada, use .describe() ou valide no nível do router.
 const CSV_UPLOAD_SCHEMA = z.object({
   filename: z.string().min(1, "Filename is required"),
   content: z.string().min(1, "CSV content is required"),
   tipoPesquisaString: z.enum(["VENDA", "POS_VENDA"]),
 });
 
-type CSVUploadInput = z.infer<typeof CSV_UPLOAD_SCHEMA>;
 
 interface CSVRow {
   TELEFONE: string;

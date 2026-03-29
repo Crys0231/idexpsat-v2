@@ -8,4 +8,9 @@ export const ENV = {
     supabaseUrl: process.env.VITE_SUPABASE_URL ?? "",
     supabaseAnonKey: process.env.VITE_SUPABASE_ANON_KEY ?? "",
     supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
+    // WhatsApp / Evolution API
+    appUrl: process.env.APP_URL ?? "http://localhost:5173",
+    evolutionApiUrl: process.env.EVOLUTION_API_URL ?? "",
+    evolutionApiKey: process.env.EVOLUTION_API_KEY ?? "",
+    evolutionInstanceName: process.env.EVOLUTION_INSTANCE_NAME ?? "idexpsat",
 };
