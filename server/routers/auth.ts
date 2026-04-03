@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { randomUUID } from "crypto";
-import { publicProcedure, router, adminProcedure } from "../../../server/_core/trpc";
-import { supabaseAdmin } from "../../../server/_core/supabase";
+import { publicProcedure, router, adminProcedure } from "../_core/trpc";
+import { supabaseAdmin } from "../_core/supabase";
 import * as db from "../db";
-import { sendApprovalRequestEmail } from "../../../server/_core/email";
+import { sendApprovalRequestEmail } from "../_core/email";
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
 import { users, tenants, userTenants } from "../../drizzle/schema";

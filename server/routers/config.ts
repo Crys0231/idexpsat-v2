@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { tenantAdminProcedure, tenantProcedure, router } from "../../../server/_core/trpc";
+import { tenantAdminProcedure, tenantProcedure, router } from "../_core/trpc";
 import * as db from "../db";
 import { TRPCError } from "@trpc/server";
 import { randomUUID } from "crypto";
@@ -70,7 +70,7 @@ export const configRouter = router({
    */
   getQuestions: tenantProcedure
     .input(z.object({ tipoPesquisaId: z.string() }))
-    .query(async ({ ctx, input }) => {
+    .query(async (_) => {
       // TODO: Implement questions retrieval
       // Validate tenant access
       return [];
@@ -112,7 +112,7 @@ export const configRouter = router({
         ativa: z.boolean().optional(),
       })
     )
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async (_) => {
       // TODO: Implement question update
       // Validate tenant access
       return { success: true };
@@ -123,7 +123,7 @@ export const configRouter = router({
    */
   deleteQuestion: tenantAdminProcedure
     .input(z.object({ perguntaId: z.string() }))
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async (_) => {
       // TODO: Implement question deletion
       // Validate tenant access
       return { success: true };
