@@ -31,8 +31,7 @@
         "server/**/*",
         "api/**/*",
         "drizzle/**/*",
-        "shared/**/*",
-        "vite.config.ts"
+        "shared/**/*"
     ],
     "exclude": [
         "node_modules",
