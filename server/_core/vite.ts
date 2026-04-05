@@ -4,12 +4,8 @@ import { type Server } from "http";
 import { nanoid } from "nanoid";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import viteConfig from "../../vite.config";
+import viteConfig from "../../vite.config.js";
 
-// FIX: trocado `Express` (interface do namespace express) por `express.Application`
-// que é o tipo concreto da instância retornada por express().
-// `Express` (capital E) é o tipo do factory/namespace, não da instância —
-// com TypeScript 5.9 strict o compilador não reconhece `.use()` nele.
 export async function setupVite(app: express.Application, server: Server) {
     const serverOptions = {
         middlewareMode: true,

@@ -1,7 +1,7 @@
-import { NOT_ADMIN_ERR_MSG, UNAUTHED_ERR_MSG } from "@shared/const";
+import { NOT_ADMIN_ERR_MSG, UNAUTHED_ERR_MSG } from "@shared/const.js";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
-import type { TrpcContext } from "./context";
+import type { TrpcContext } from "./context.js";
 
 const t = initTRPC.context<TrpcContext>().create({
     transformer: superjson,
@@ -29,6 +29,7 @@ const requireUser = t.middleware(async (opts) => {
     });
 });
 
+// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
 export const protectedProcedure = t.procedure.use(requireUser);
 
 // ============================================================================
@@ -62,54 +63,56 @@ const requireTenant = t.middleware(async (opts) => {
  * Protected procedure with mandatory tenant context
  * Use this for all tenant-specific operations
  */
+// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
 export const tenantProcedure = t.procedure.use(requireTenant);
 
 // ============================================================================
 // ADMIN MIDDLEWARE
 // ============================================================================
 
-export const adminProcedure = t.procedure.use(
-    t.middleware(async (opts) => {
-        const { ctx, next } = opts;
+const requireAdmin = t.middleware(async (opts) => {
+    const { ctx, next } = opts;
 
-        if (!ctx.user || ctx.user.role !== "admin") {
-            throw new TRPCError({ code: "FORBIDDEN", message: NOT_ADMIN_ERR_MSG });
-        }
+    if (!ctx.user || ctx.user.role !== "admin") {
+        throw new TRPCError({ code: "FORBIDDEN", message: NOT_ADMIN_ERR_MSG });
+    }
 
-        return next({
-            ctx: {
-                ...ctx,
-                user: ctx.user,
-            },
-        });
-    })
-);
+    return next({
+        ctx: {
+            ...ctx,
+            user: ctx.user,
+        },
+    });
+});
+
+// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
+export const adminProcedure = t.procedure.use(requireAdmin);
 
 /**
  * Admin procedure with mandatory tenant context
  * Use this for admin operations that are tenant-scoped
  */
-export const tenantAdminProcedure = t.procedure.use(
-    t.middleware(async (opts) => {
-        const { ctx, next } = opts;
+const requireTenantAdmin = t.middleware(async (opts) => {
+    const { ctx, next } = opts;
 
-        if (!ctx.user || ctx.user.role !== "admin") {
-            throw new TRPCError({ code: "FORBIDDEN", message: NOT_ADMIN_ERR_MSG });
-        }
+    if (!ctx.user || ctx.user.role !== "admin") {
+        throw new TRPCError({ code: "FORBIDDEN", message: NOT_ADMIN_ERR_MSG });
+    }
 
-        if (!ctx.tenant) {
-            throw new TRPCError({
-                code: "FORBIDDEN",
-                message: "User is not associated with any tenant",
-            });
-        }
-
-        return next({
-            ctx: {
-                ...ctx,
-                user: ctx.user,
-                tenant: ctx.tenant,
-            },
+    if (!ctx.tenant) {
+        throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "User is not associated with any tenant",
         });
-    })
-);
+    }
+
+    return next({
+        ctx: {
+            ...ctx,
+            user: ctx.user,
+            tenant: ctx.tenant,
+        },
+    });
+});
+
+export const tenantAdminProcedure = t.procedure.use(requireTenantAdmin);

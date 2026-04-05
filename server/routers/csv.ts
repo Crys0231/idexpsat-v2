@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { tenantProcedure, router } from "../_core/trpc";
-import * as db from "../db";
+import { tenantProcedure, router } from "../_core/trpc.js";
+import * as db from "../db.js";
 import { TRPCError } from "@trpc/server";
-import { sendSurveyWhatsAppNotification } from "../_core/whatsapp";
+import { sendSurveyWhatsAppNotification } from "../_core/whatsapp.js";
 
 const CSV_UPLOAD_SCHEMA = z.object({
   filename: z.string().min(1, "Filename is required"),

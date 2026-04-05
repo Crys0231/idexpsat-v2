@@ -1,16 +1,16 @@
 import "dotenv/config";
-import express from "express";
+import express, { type Express } from "express";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { appRouter } from "../routers";
-import { createContext } from "./context";
-import { serveStatic, setupVite } from "./vite";
+import { appRouter } from "../routers.js";
+import { createContext } from "./context.js";
+import { serveStatic, setupVite } from "./vite.js";
 // FIX: removido import de registerOAuthRoutes — rota /api/oauth/callback era
 // exclusiva do fluxo Manus. O Supabase Auth não precisa de callback server-side;
 // o frontend lida com a sessão diretamente via @supabase/supabase-js.
 
-export const app = express();
+export const app: Express = express();
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));

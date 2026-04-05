@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { randomUUID } from "crypto";
-import { publicProcedure, router, adminProcedure } from "../_core/trpc";
-import { supabaseAdmin } from "../_core/supabase";
-import * as db from "../db";
-import { sendApprovalRequestEmail } from "../_core/email";
+import { publicProcedure, router, adminProcedure } from "../_core/trpc.js";
+import { supabaseAdmin } from "../_core/supabase.js";
+import * as db from "../db.js";
+import { sendApprovalRequestEmail } from "../_core/email.js";
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
-import { users, tenants, userTenants } from "../../drizzle/schema";
+import { users, tenants, userTenants } from "../../drizzle/schema.js";
 
 export const authRouter = router({
   /**

@@ -2,7 +2,7 @@
  * Integração com Evolution API para envio de mensagens via WhatsApp
  */
 
-import { ENV } from "./env";
+import { ENV } from "./env.js";
 
 export async function sendSurveyWhatsAppNotification(phone: string, token: string, clientName: string) {
   const evolutionApiUrl = ENV.evolutionApiUrl;
