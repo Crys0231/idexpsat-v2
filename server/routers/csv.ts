@@ -19,7 +19,7 @@ interface CSVRow {
   PLACA: string;
 }
 
-interface ProcessingResult {
+export interface ProcessingResult {
   totalRows: number;
   processedRows: number;
   errors: Array<{ row: number; error: string }>;

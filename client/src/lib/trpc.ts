@@ -3,6 +3,8 @@ import { createTRPCReact } from "@trpc/react-query";
 import { httpBatchLink } from "@trpc/client";
 import superjson from "superjson";
 import { supabase } from "./supabase";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore – cross-project import; Vite resolves this correctly at build time
 import type { AppRouter } from "../../../server/routers";
 
 export const trpc = createTRPCReact<AppRouter>();

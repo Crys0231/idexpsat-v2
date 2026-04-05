@@ -168,7 +168,7 @@ export const surveysRouter = router({
         respondidas: z.boolean().optional(),
       })
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       // TODO: Implement survey listing with pagination
       // This would require additional database queries
       return {
@@ -184,7 +184,7 @@ export const surveysRouter = router({
    */
   getSurveyDetails: tenantProcedure
     .input(z.object({ pesquisaId: z.string() }))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       // TODO: Implement survey details retrieval
       // Validate tenant access to survey
       return null;
@@ -193,7 +193,7 @@ export const surveysRouter = router({
   /**
    * Get survey statistics for tenant
    */
-  getStatistics: tenantProcedure.query(async ({ ctx }) => {
+  getStatistics: tenantProcedure.query(async () => {
     // TODO: Implement statistics calculation
     return {
       totalSurveys: 0,

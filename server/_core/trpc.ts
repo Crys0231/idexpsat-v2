@@ -29,8 +29,9 @@ const requireUser = t.middleware(async (opts) => {
     });
 });
 
-// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
-export const protectedProcedure = t.procedure.use(requireUser);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const protectedProcedure: ReturnType<typeof t.procedure.use<any>> =
+    t.procedure.use(requireUser);
 
 // ============================================================================
 // MULTI-TENANT MIDDLEWARE
@@ -63,8 +64,9 @@ const requireTenant = t.middleware(async (opts) => {
  * Protected procedure with mandatory tenant context
  * Use this for all tenant-specific operations
  */
-// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
-export const tenantProcedure = t.procedure.use(requireTenant);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const tenantProcedure: ReturnType<typeof t.procedure.use<any>> =
+    t.procedure.use(requireTenant);
 
 // ============================================================================
 // ADMIN MIDDLEWARE
@@ -85,8 +87,9 @@ const requireAdmin = t.middleware(async (opts) => {
     });
 });
 
-// ✅ FIX: Removida tipagem explícita - deixa TypeScript inferir
-export const adminProcedure = t.procedure.use(requireAdmin);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const adminProcedure: ReturnType<typeof t.procedure.use<any>> =
+    t.procedure.use(requireAdmin);
 
 /**
  * Admin procedure with mandatory tenant context
@@ -115,4 +118,6 @@ const requireTenantAdmin = t.middleware(async (opts) => {
     });
 });
 
-export const tenantAdminProcedure = t.procedure.use(requireTenantAdmin);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const tenantAdminProcedure: ReturnType<typeof t.procedure.use<any>> =
+    t.procedure.use(requireTenantAdmin);

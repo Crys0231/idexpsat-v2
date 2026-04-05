@@ -14,8 +14,8 @@ import {
     tiposPesquisa,
     respostas,
     notificacoes,
-} from "../drizzle/schema";
-import { ENV } from "./_core/env";
+} from "../drizzle/schema.js";
+import { ENV } from "./_core/env.js";
 import { randomUUID } from "crypto";
 import { createHash } from "crypto";
 
