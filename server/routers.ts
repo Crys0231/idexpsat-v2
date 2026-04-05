@@ -1,8 +1,8 @@
-import { router } from "./_core/trpc";
-import { csvRouter } from "./routers/csv";
-import { surveysRouter } from "./routers/surveys";
-import { configRouter } from "./routers/config";
-import { authRouter } from "./routers/auth"; // import the new authRouter
+import { router } from "./_core/trpc.js";
+import { csvRouter } from "./routers/csv.js";
+import { surveysRouter } from "./routers/surveys.js";
+import { configRouter } from "./routers/config.js";
+import { authRouter } from "./routers/auth.js"; // import the new authRouter
 
 export const appRouter = router({
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { tenantProcedure, publicProcedure, router } from "../_core/trpc";
-import * as db from "../db";
+import { tenantProcedure, publicProcedure, router } from "../_core/trpc.js";
+import * as db from "../db.js";
 import { TRPCError } from "@trpc/server";
 import { randomUUID } from "crypto";
 
